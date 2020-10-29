@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Text;
 using WeatherApp.ViewModels;
 using Xunit;
+using Moq;
+using WeatherApp.Services;
 
 namespace WeatherStationTests
 {
@@ -86,7 +88,6 @@ namespace WeatherStationTests
             // Act       
             // Assert
             Assert.False(_sut.CanGetTemp());
-            /// TODO : git commit -a -m "T04 CanGetTemp_WhenServiceIsNull_ReturnsFalse : Done"
         }
 
         /// <summary>
@@ -97,11 +98,11 @@ namespace WeatherStationTests
         public void CanGetTemp_WhenServiceIsSet_ReturnsTrue()
         {
             // Arrange
-
+            Mock<ITemperatureService> mock = new Mock<ITemperatureService>();
             // Act       
-
+            _sut.SetTemperatureService(mock.Object);
             // Assert
-
+            Assert.True(_sut.CanGetTemp());
             /// TODO : git commit -a -m "T05 CanGetTemp_WhenServiceIsSet_ReturnsTrue : Done"
         }
 
