@@ -8,7 +8,5 @@ namespace WeatherApp.Models
     {
         public DateTime DateTime { get; set; }
         public double Temperature { get; set; }
-
-        public TemperatureModel() { }
     }
 }

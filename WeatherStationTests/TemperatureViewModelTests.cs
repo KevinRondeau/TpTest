@@ -74,9 +74,8 @@ namespace WeatherStationTests
         {
             // Arrange
             // Act       
-
             // Assert
-            Assert.Throws<NullReferenceException>(() => _sut.GetTempCommand.Execute(null));
+            Assert.Throws<NullReferenceException>(() => _sut.GetTempCommand.Execute(""));
         }
 
         /// <summary>
@@ -120,7 +119,6 @@ namespace WeatherStationTests
             _sut.SetTemperatureService(ITempMock.Object);
             // Assert
             Assert.NotNull(_sut.TemperatureService);
-            /// TODO : git commit -a -m "T06 SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull : Done"
         }
 
         /// <summary>
@@ -131,10 +129,13 @@ namespace WeatherStationTests
         public void GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass()
         {
             // Arrange
-
+            Mock<ITemperatureService> ITempMock = new Mock<ITemperatureService>();
+            ITempMock.Setup(x => x.GetTempAsync()).Returns(Task.FromResult(new TemperatureModel()));
             // Act       
-
+            _sut.SetTemperatureService(ITempMock.Object);
+            _sut.GetTempCommand.Execute("");
             // Assert
+            Assert.NotNull(_sut.CurrentTemp);
 
             /// TODO : git commit -a -m "T07 GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass : Done"
         }
