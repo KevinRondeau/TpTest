@@ -6,6 +6,8 @@ using WeatherApp.ViewModels;
 using Xunit;
 using Moq;
 using WeatherApp.Services;
+using System.Threading.Tasks;
+using WeatherApp.Models;
 
 namespace WeatherStationTests
 {
@@ -98,12 +100,11 @@ namespace WeatherStationTests
         public void CanGetTemp_WhenServiceIsSet_ReturnsTrue()
         {
             // Arrange
-            Mock<ITemperatureService> mock = new Mock<ITemperatureService>();
+            Mock<ITemperatureService> ITempMock = new Mock<ITemperatureService>();
             // Act       
-            _sut.SetTemperatureService(mock.Object);
+            _sut.SetTemperatureService(ITempMock.Object);
             // Assert
             Assert.True(_sut.CanGetTemp());
-            /// TODO : git commit -a -m "T05 CanGetTemp_WhenServiceIsSet_ReturnsTrue : Done"
         }
 
         /// <summary>
@@ -114,11 +115,11 @@ namespace WeatherStationTests
         public void SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull()
         {
             // Arrange
-
+            Mock<ITemperatureService> ITempMock = new Mock<ITemperatureService>();
             // Act       
-
+            _sut.SetTemperatureService(ITempMock.Object);
             // Assert
-
+            Assert.NotNull(_sut.TemperatureService);
             /// TODO : git commit -a -m "T06 SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull : Done"
         }
 
