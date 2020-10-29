@@ -19,6 +19,7 @@ namespace WeatherStationTests
         /// <param name="C">Degré Celsius</param>
         /// <param name="expected">Résultat attendu</param>
         /// <remarks>T01</remarks>
+        /// formula (0 °C × 9/5) + 32 = 32 °F
         [Theory]
         [InlineData(0, 32)]
         [InlineData(-40, -40)]
@@ -29,11 +30,11 @@ namespace WeatherStationTests
         public void CelsiusInFahrenheit_AlwaysReturnGoodValue(double C, double expected)
         {
             // Arrange
-
-            // Act       
+            double actual = TemperatureViewModel.CelsiusInFahrenheit(C);
+            // Act  
 
             // Assert
-
+            Assert.Equal(actual, expected);
             /// TODO : git commit -a -m "T01 CelsisInFahrenheit_AlwaysReturnGoodValue : Done"
         }
 
