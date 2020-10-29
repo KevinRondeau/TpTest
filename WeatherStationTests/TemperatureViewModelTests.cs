@@ -35,7 +35,6 @@ namespace WeatherStationTests
 
             // Assert
             Assert.Equal(actual, expected);
-            /// TODO : git commit -a -m "T01 CelsisInFahrenheit_AlwaysReturnGoodValue : Done"
         }
 
         /// <summary>
@@ -60,7 +59,6 @@ namespace WeatherStationTests
             // Assert
 
             Assert.Equal(actual, expected);
-            /// TODO : git commit -a -m "T02 FahrenheitInCelsius_AlwaysReturnGoodValue : Done"
         }
 
         /// <summary>
@@ -71,11 +69,10 @@ namespace WeatherStationTests
         public void GetTempCommand_ExecuteIfNullService_ShouldThrowNullException()
         {
             // Arrange
-
             // Act       
 
             // Assert
-
+            Assert.Throws<NullReferenceException>(() => _sut.GetTempCommand.Execute(null));
             /// TODO : git commit -a -m "T03 GetTempCommand_ExecuteIfNullService_ShouldThrowNullException : Done"
         }
 
