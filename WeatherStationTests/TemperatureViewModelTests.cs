@@ -137,7 +137,6 @@ namespace WeatherStationTests
             // Assert
             Assert.NotNull(_sut.CurrentTemp);
 
-            /// TODO : git commit -a -m "T07 GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass : Done"
         }
 
         /// <summary>

@@ -44,9 +44,5 @@ namespace WeatherApp.Commands
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public void Execute(Action canGetTemp_WhenServiceIsSet_ReturnsTrue)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
