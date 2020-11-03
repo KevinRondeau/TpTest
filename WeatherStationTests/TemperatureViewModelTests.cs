@@ -88,7 +88,7 @@ namespace WeatherStationTests
             // Arrange
             // Act       
             // Assert
-            Assert.False(_sut.CanGetTemp());
+            Assert.False(_sut.CanGetTemp(String.Empty));
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace WeatherStationTests
             // Act       
             _sut.SetTemperatureService(ITempMock.Object);
             // Assert
-            Assert.True(_sut.CanGetTemp());
+            Assert.True(_sut.CanGetTemp(String.Empty));
         }
 
         /// <summary>

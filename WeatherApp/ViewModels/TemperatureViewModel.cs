@@ -11,17 +11,17 @@ namespace WeatherApp.ViewModels
     public class TemperatureViewModel : BaseViewModel
     {
         public ITemperatureService TemperatureService;
-        public DelegateCommand<string> GetTempCommand {
-                get {
-                    if (TemperatureService != null)
-                        return new DelegateCommand<string>(canGetCurrentTemp);
-                    else
-                        throw new NullReferenceException();
-                }
-            }
-
+        public DelegateCommand<string> GetTempCommand;
+        
         public TemperatureModel CurrentTemp { get; set; }
-        public void SetTemperatureService(ITemperatureService TempServ)
+
+        public TemperatureViewModel()
+        {   
+                GetTempCommand = new DelegateCommand<string>(GetCurrentTemp, CanGetTemp);
+        }
+
+
+         public void SetTemperatureService(ITemperatureService TempServ)
         {
             TemperatureService = TempServ;
         }
@@ -34,23 +34,22 @@ namespace WeatherApp.ViewModels
         {
             return Math.Round((f - 32) * 5 / 9, 1);
         }
-        public bool CanGetTemp()
-        {
+        public bool CanGetTemp(String s)
+        {       
+                return TemperatureService != null;
+        }
+        private void GetCurrentTemp(Object o)
+        {   
             if (TemperatureService == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
+                throw new NullReferenceException();
+            _ = GetCurrentTempAsync();
         }
-        private async void canGetCurrentTemp(Object o)
-        {    
-                CurrentTemp = await TemperatureService.GetTempAsync();     
+        private async Task GetCurrentTempAsync()
+        {
+            CurrentTemp = await TemperatureService.GetTempAsync();
         }
- 
-        /// TODO : Ajoutez le code nécessaire pour réussir les tests et répondre aux requis du projet
+       
     }
+
+    
 }
